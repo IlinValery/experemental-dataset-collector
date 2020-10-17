@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<launch>
+     <rosparam param="/use_sim_time">true</rosparam>
+     <node pkg="rosbag" type="play" name="player" args="--clock  /home/egorpristanskiy/localization_ump.bag"/>
+    <include file="$(find ump_loc)/launch/ump_localization_visualization.launch"/>
+    <include file="$(find ump_loc)/launch/particle_filter.launch"/>
+    <group ns="visualization">
+     <node pkg="rviz" name="$(anon rviz-1)" type="rviz"
+           args="-d $(find ump_uav_loc)/config/ump_localization.rviz" output="screen"/>
+    </group>
+</launch>
